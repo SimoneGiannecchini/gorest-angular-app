@@ -1,0 +1,12 @@
+<nav class="app-navbar">
+  <div class="app-navbar__inner">
+    <a class="app-navbar__brand" routerLink="/users">GoREST Angular</a>
+
+    <div class="app-navbar__links">
+      <a class="app-navbar__link" routerLink="/users" routerLinkActive="active">Utenti</a>
+      <a class="app-navbar__link" routerLink="/posts" routerLinkActive="active">Post</a>
+    </div>
+
+    <button class="app-navbar__logout" (click)="logout()">Logout</button>
+  </div>
+</nav>

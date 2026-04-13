@@ -1,0 +1,139 @@
+<section class="user-detail-page">
+  <a class="back-link" routerLink="/users">Torna agli utenti</a>
+
+  <p *ngIf="success" class="detail-success">{{ success }}</p>
+  <p *ngIf="error" class="detail-error">{{ error }}</p>
+
+  <ng-container *ngIf="user as currentUser">
+    <header class="detail-hero">
+      <div>
+        <p class="detail-eyebrow">Dettaglio utente</p>
+        <h1>{{ currentUser.name }}</h1>
+        <p class="detail-subtitle">{{ currentUser.email }}</p>
+      </div>
+
+      <div class="detail-badges">
+        <span class="detail-pill">{{ currentUser.gender }}</span>
+        <span
+          class="detail-pill"
+          [class.detail-pill--active]="currentUser.status === 'active'"
+          [class.detail-pill--inactive]="currentUser.status === 'inactive'"
+        >
+          {{ currentUser.status }}
+        </span>
+      </div>
+    </header>
+
+    <section class="detail-card">
+      <h2>Informazioni disponibili</h2>
+      <dl class="detail-grid">
+        <div>
+          <dt>ID</dt>
+          <dd>#{{ currentUser.id }}</dd>
+        </div>
+        <div>
+          <dt>Nome</dt>
+          <dd>{{ currentUser.name }}</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>{{ currentUser.email }}</dd>
+        </div>
+        <div>
+          <dt>Genere</dt>
+          <dd>{{ currentUser.gender }}</dd>
+        </div>
+        <div>
+          <dt>Stato</dt>
+          <dd>{{ currentUser.status }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="detail-card">
+      <div class="detail-section-head">
+        <div>
+          <h2>Scrivi un post</h2>
+          <p class="detail-section-note">Il post verra pubblicato come {{ currentUser.name }}.</p>
+        </div>
+      </div>
+
+      <form class="post-form" (ngSubmit)="createPost()">
+        <label>
+          <span>Titolo</span>
+          <input type="text" [(ngModel)]="postForm.title" name="post-title" required />
+        </label>
+
+        <label class="post-form__wide">
+          <span>Contenuto</span>
+          <textarea [(ngModel)]="postForm.body" name="post-body" rows="5" required></textarea>
+        </label>
+
+        <button type="submit">Pubblica post</button>
+      </form>
+    </section>
+
+    <section class="detail-card">
+      <div class="detail-section-head">
+        <h2>Post dell'utente</h2>
+        <span>{{ posts.length }} post</span>
+      </div>
+
+      <p *ngIf="loadingPosts && posts.length === 0" class="detail-empty">Caricamento dati...</p>
+      <p *ngIf="!loadingPosts && posts.length === 0" class="detail-empty">Nessun post disponibile.</p>
+
+      <article *ngFor="let post of posts; trackBy: trackByPostId" class="post-card">
+        <div class="post-card__head">
+          <div>
+            <p class="post-card__id">Post #{{ post.id }}</p>
+            <h3>{{ post.title }}</h3>
+          </div>
+          <button type="button" class="post-card__toggle" (click)="toggleComments(post.id)">
+            {{ openComments[post.id] ? 'Nascondi commenti' : 'Mostra commenti' }}
+          </button>
+        </div>
+
+        <p class="post-card__body">{{ post.body }}</p>
+
+        <div *ngIf="openComments[post.id]" class="post-comments">
+          <p *ngIf="!commentsByPost[post.id]" class="detail-empty">Caricamento commenti...</p>
+          <p *ngIf="commentsByPost[post.id] && commentsByPost[post.id].length === 0" class="detail-empty">
+            Nessun commento per questo post.
+          </p>
+
+          <div *ngFor="let comment of commentsByPost[post.id]" class="comment-card">
+            <p class="comment-card__author">{{ comment.name }} - {{ comment.email }}</p>
+            <p class="comment-card__body">{{ comment.body }}</p>
+          </div>
+
+          <form class="comment-form" (ngSubmit)="createComment(post.id)">
+            <input
+              type="text"
+              [(ngModel)]="commentForms[post.id].name"
+              [name]="'comment-name-' + post.id"
+              placeholder="Nome"
+              required
+            />
+            <input
+              type="email"
+              [(ngModel)]="commentForms[post.id].email"
+              [name]="'comment-email-' + post.id"
+              placeholder="Email"
+              required
+            />
+            <textarea
+              [(ngModel)]="commentForms[post.id].body"
+              [name]="'comment-body-' + post.id"
+              rows="3"
+              placeholder="Scrivi un commento"
+              required
+            ></textarea>
+            <button type="submit" [disabled]="commentLoading[post.id]">
+              {{ commentLoading[post.id] ? 'Invio...' : 'Aggiungi commento' }}
+            </button>
+          </form>
+        </div>
+      </article>
+    </section>
+  </ng-container>
+</section>

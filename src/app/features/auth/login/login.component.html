@@ -1,0 +1,86 @@
+<section class="login-page">
+  <div class="login-shell">
+    <section class="login-hero">
+      <div class="login-copy">
+        <p class="login-kicker">GoREST Angular Dashboard</p>
+        <h1>La tua dashboard GoREST per utenti, post e commenti.</h1>
+        <p class="login-lead">
+          Accedi con il token personale per consultare utenti, pubblicare post e gestire commenti in
+          un'unica interfaccia.
+        </p>
+
+        <div class="login-badges">
+          <span>Bearer Auth</span>
+          <span>REST API</span>
+          <span>Angular</span>
+        </div>
+
+        <div class="login-features">
+          <article class="login-feature-card">
+            <span class="login-feature-card__eyebrow">Utenti</span>
+            <strong>Ricerca e CRUD utenti</strong>
+            <p>Cerca, apri, crea e rimuovi utenti.</p>
+          </article>
+          <article class="login-feature-card">
+            <span class="login-feature-card__eyebrow">Post</span>
+            <strong>Elenco e nuovi post</strong>
+            <p>Esplora i post e pubblicane di nuovi.</p>
+          </article>
+          <article class="login-feature-card">
+            <span class="login-feature-card__eyebrow">Commenti</span>
+            <strong>Lettura e inserimento</strong>
+            <p>Apri i commenti e aggiungine di nuovi.</p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="login-panel">
+        <div class="login-panel__head">
+          <p class="login-brand">GoREST</p>
+          <p class="login-panel__subtitle">Inserisci il token per accedere alla dashboard del progetto.</p>
+        </div>
+
+        <form class="login-form" (ngSubmit)="login()">
+          <div class="token-search" [class.token-search--error]="!!error">
+            <span class="token-search__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M10 4a6 6 0 1 0 3.874 10.582l4.272 4.272 1.414-1.414-4.272-4.272A6 6 0 0 0 10 4zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"
+                />
+              </svg>
+            </span>
+
+            <input
+              id="token"
+              type="text"
+              class="token-search__input"
+              [(ngModel)]="token"
+              name="token"
+              placeholder="Inserisci il token"
+              [disabled]="loading"
+              autocomplete="off"
+              spellcheck="false"
+            />
+
+            <button type="submit" class="token-search__submit" [disabled]="loading">
+              {{ loading ? 'Verifica...' : 'Accedi' }}
+            </button>
+          </div>
+
+          <p *ngIf="error" class="login-error">{{ error }}</p>
+        </form>
+
+        <div class="login-preview">
+          <article>
+            <span>Utenti</span>
+            <strong>Ricerca, dettaglio e CRUD</strong>
+          </article>
+          <article>
+            <span>Post</span>
+            <strong>Commenti, creazione e gestione locale</strong>
+          </article>
+        </div>
+      </aside>
+    </section>
+  </div>
+</section>

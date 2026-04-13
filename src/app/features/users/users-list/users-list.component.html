@@ -1,0 +1,143 @@
+<section class="users-page">
+  <header class="users-hero">
+    <div>
+      <p class="users-eyebrow">Pagina principale</p>
+      <h1>Elenco utenti</h1>
+      <p class="users-subtitle">
+        Cerca utenti, scegli quanti record visualizzare e gestisci inserimento o rimozione.
+      </p>
+    </div>
+
+    <button type="button" class="users-add-button" (click)="showCreateForm = !showCreateForm">
+      {{ showCreateForm ? 'Chiudi inserimento' : 'Aggiungi utente' }}
+    </button>
+  </header>
+
+  <section class="users-toolbar">
+    <form class="users-search" (ngSubmit)="searchUsers()">
+      <input
+        type="search"
+        [(ngModel)]="search"
+        name="search"
+        placeholder="Cerca per nome o email"
+        [disabled]="loading"
+      />
+
+      <button type="submit" [disabled]="loading">Cerca</button>
+      <button type="button" class="secondary" (click)="resetSearch()" [disabled]="loading">
+        Reset
+      </button>
+    </form>
+
+    <label class="users-per-page">
+      <span>Record</span>
+      <select [(ngModel)]="perPage" name="perPage" (ngModelChange)="onPerPageChange()">
+        <option *ngFor="let option of perPageOptions" [ngValue]="option">
+          {{ option }}
+        </option>
+      </select>
+    </label>
+  </section>
+
+  <section *ngIf="showCreateForm" class="users-create-panel">
+    <div class="users-create-panel__header">
+      <h2>Nuovo utente</h2>
+      <p>Inserisci i dati base per creare un nuovo record.</p>
+    </div>
+
+    <form class="users-create-form" (ngSubmit)="createUser()">
+      <label>
+        <span>Nome</span>
+        <input type="text" [(ngModel)]="form.name" name="name" required />
+      </label>
+
+      <label>
+        <span>Email</span>
+        <input type="email" [(ngModel)]="form.email" name="email" required />
+      </label>
+
+      <label>
+        <span>Genere</span>
+        <select [(ngModel)]="form.gender" name="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Stato</span>
+        <select [(ngModel)]="form.status" name="status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </label>
+
+      <button type="submit">Salva utente</button>
+    </form>
+  </section>
+
+  <p *ngIf="error" class="users-error">{{ error }}</p>
+
+  <section class="users-table-shell">
+    <div class="users-table-meta">
+      <span>Pagina {{ page }} di {{ totalPages }}</span>
+      <span>{{ users.length }} record caricati</span>
+    </div>
+
+    <div class="users-table-wrap">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Genere</th>
+            <th>Stato</th>
+            <th class="users-actions-col">Azioni</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="loading">
+            <td colspan="6" class="users-empty">Caricamento utenti...</td>
+          </tr>
+
+          <tr *ngIf="!loading && users.length === 0">
+            <td colspan="6" class="users-empty">Nessun utente trovato.</td>
+          </tr>
+
+          <tr *ngFor="let user of users; trackBy: trackByUserId">
+            <td data-label="ID">#{{ user.id }}</td>
+            <td data-label="Nome">{{ user.name }}</td>
+            <td data-label="Email">{{ user.email }}</td>
+            <td data-label="Genere">
+              <span class="users-pill">{{ user.gender }}</span>
+            </td>
+            <td data-label="Stato">
+              <span
+                class="users-pill"
+                [class.users-pill--active]="user.status === 'active'"
+                [class.users-pill--inactive]="user.status === 'inactive'"
+              >
+                {{ user.status }}
+              </span>
+            </td>
+            <td class="users-actions" data-label="Azioni">
+              <a class="users-detail-link" [routerLink]="['/users', user.id]">Dettaglio</a>
+              <button type="button" class="danger" (click)="deleteUser(user.id)">Rimuovi</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="users-pagination">
+      <button type="button" (click)="previousPage()" [disabled]="page === 1 || loading">
+        Precedente
+      </button>
+      <button type="button" (click)="nextPage()" [disabled]="!hasNextPage || loading">
+        Successiva
+      </button>
+    </div>
+  </section>
+</section>
