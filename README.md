@@ -1,83 +1,124 @@
-# GorestAngularApp
+# GoREST Angular App
 
-Angular application based on the GoREST REST API.
+Applicazione Angular per la gestione di utenti, post e commenti tramite le REST API di [GoREST](https://gorest.co.in/).
 
-## Authentication
+## Descrizione
 
-The application is client-side only, in line with the course requirements.
+Il progetto permette di autenticarsi con un token personale GoREST e di lavorare sulle principali risorse della piattaforma attraverso un'interfaccia moderna e responsive.
 
-- The login page accepts a personal access token generated on GoREST
-- The token is stored in the browser and used as Bearer Token for protected requests
-- Angular route guards protect the application pages from unauthenticated access
-- If a protected API call returns `401` or `403`, the app logs out and sends the user back to login
+L'applicazione consente di:
 
-## Resources used
+- effettuare il login con token personale GoREST
+- visualizzare e cercare utenti
+- creare ed eliminare utenti
+- aprire il dettaglio di un utente
+- visualizzare i post dell'utente selezionato
+- visualizzare e inserire commenti
+- visualizzare tutti i post presenti a sistema
+- cercare i post
+- creare nuovi post
+- effettuare il logout
 
-Official GoREST documentation indicates these resources:
+## Login
 
-- `https://gorest.co.in/public/v2/users`
-- `https://gorest.co.in/public/v2/posts`
-- `https://gorest.co.in/public/v2/comments`
-- `https://gorest.co.in/public/v2/todos`
+Per il login è necessario utilizzare un token personale generato su GoREST:
 
-In the current application:
+[https://gorest.co.in/consumer/login](https://gorest.co.in/consumer/login)
 
-- users are loaded from `https://gorest.in/public/v2`
-- posts and comments use `https://gorest.co.in/public/v2`
+Il token viene utilizzato per:
 
-This split was introduced because, during verification on March 14, 2026, the GoREST service returned inconsistent results across the two domains.
+- la gestione della sessione nell'applicazione Angular
+- l'invocazione delle REST API tramite HTTP Bearer Token
 
-## Implemented features
+## Funzionalità implementate
 
-- Login with personal GoREST token
-- Protected Angular routes
-- Users list with search, record count selection, pagination, add user and remove user
-- User detail page with all available user fields
-- User detail page with related posts and comments for each post
-- New post creation from user detail
-- Posts list with search, pagination and new post creation
-- Comment viewing for each post
-- Comment creation for each post
+### Pagina principale - Elenco utenti
 
-## Run locally
+- visualizzazione degli utenti con informazioni base
+- ricerca per nome o email
+- scelta del numero di record visualizzati
+- creazione di un nuovo utente
+- eliminazione di un utente
+- accesso al dettaglio utente
 
-```bash
-npm start
-```
+### Pagina dettaglio utente
 
-Open:
+- visualizzazione di tutte le informazioni disponibili dell'utente
+- elenco dei post associati all'utente
+- visualizzazione dei commenti relativi a ogni post
+- inserimento di nuovi commenti
+- creazione di nuovi post associati all'utente
 
-```text
-http://localhost:4200
-```
+### Elenco post
 
-## Available scripts
+- visualizzazione di tutti i post presenti a sistema
+- ricerca per titolo
+- visualizzazione dei commenti di ogni post
+- inserimento di nuovi commenti
+- creazione di nuovi post
 
-```bash
-npm start
-npm run build
-npm test
-```
+### Logout
 
-## Technical note about GoREST instability
+- rimozione della sessione
+- ritorno alla schermata di login
 
-On March 14, 2026, direct tests against GoREST showed the following behavior:
+## Tecnologie utilizzate
 
-- `GET https://gorest.in/public/v2/users/1001` returned `200`
-- `GET https://gorest.in/public/v2/posts` returned `Cannot GET /public/v2/posts`
-- `GET https://gorest.co.in/public/v2/users/1001` returned `500`
-- `POST https://gorest.co.in/public/v2/users/1001/posts` returned `500`
+- Angular
+- TypeScript
+- SCSS
+- Bootstrap
+- RxJS
+- GoREST REST API
 
-This means that some failures currently depend on the external GoREST service and not on the Angular frontend itself.
+## Architettura
 
-For this reason, the frontend:
+Il progetto è organizzato in sezioni lazy loaded:
 
-- uses the documented endpoints where possible
-- shows explicit messages when GoREST returns `500`
-- keeps the application flow usable even when part of the external API is temporarily unavailable
+- `auth`
+- `users`
+- `posts`
 
-## Evaluation note
+Sono inoltre presenti:
 
-The application structure, routing, authentication flow, forms, HTTP integration, UI pages and error handling were implemented according to the project requirements.
+- `guard` per protezione delle route
+- `interceptor` per Bearer Token
+- servizi dedicati per utenti, post e commenti
+- componenti condivisi
 
-If post creation or post retrieval temporarily fail, the limitation is caused by the current availability of the GoREST service, as verified through direct external requests during development.
+## Avvio in locale
+
+`npm start`
+
+Applicazione disponibile su: `http://localhost:4200`
+
+## Build di produzione
+
+`npx ng build --configuration production`
+
+## Test
+
+Esecuzione test unitari: `npm test -- --watch=false`
+
+Esecuzione coverage: `npx ng test --watch=false --coverage`
+
+Coverage attuale superiore al requisito minimo del 60%.
+
+## Deploy su GitHub Pages
+
+Build per GitHub Pages: `npx ng build --configuration production --base-href /gorest-angular-app/`
+
+L'applicazione è configurata con routing hash per evitare errore 404 al refresh delle pagine su GitHub Pages.
+
+URL del progetto pubblicato: [https://simonegiannecchini.github.io/gorest-angular-app/](https://simonegiannecchini.github.io/gorest-angular-app/)
+
+## Note
+
+Le API GoREST possono mostrare comportamenti non sempre stabili su alcuni endpoint. Per questo il progetto gestisce gli errori in modo esplicito e mostra messaggi chiari all'utente.
+
+## Autore
+
+Simone Giannecchini
+
+
+
