@@ -7,11 +7,12 @@
 .posts-toolbar,
 .posts-create-panel,
 .posts-list-shell {
-  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
-  border: 1px solid #d6e2ec;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 252, 255, 0.95) 100%);
+  border: 1px solid rgba(176, 204, 229, 0.74);
   border-radius: 24px;
   box-shadow:
-    0 18px 40px rgba(26, 47, 70, 0.08),
+    0 20px 44px rgba(36, 73, 112, 0.1),
     0 1px 0 rgba(255, 255, 255, 0.9) inset;
 }
 
@@ -21,6 +22,33 @@
   gap: 1rem;
   align-items: flex-start;
   padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 252, 255, 0.92) 100%),
+    linear-gradient(135deg, rgba(74, 132, 255, 0.08) 0%, rgba(72, 212, 200, 0.06) 48%, rgba(255, 171, 135, 0.08) 100%);
+}
+
+.posts-hero::before {
+  content: '';
+  position: absolute;
+  top: -95px;
+  right: -35px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(73, 138, 255, 0.18) 0%, transparent 72%);
+}
+
+.posts-hero::after {
+  content: '';
+  position: absolute;
+  left: -70px;
+  bottom: -110px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 172, 136, 0.16) 0%, transparent 72%);
 }
 
 .posts-eyebrow {
@@ -29,21 +57,26 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #6c8197;
+  color: #65809b;
 }
 
 .posts-hero h1,
 .posts-create-panel h2,
 .post-card h2 {
   margin: 0;
-  color: #193247;
+  font-family: var(--font-display);
+  color: #173857;
+  position: relative;
+  z-index: 1;
 }
 
 .posts-subtitle {
   max-width: 640px;
   margin: 0.7rem 0 0;
-  color: #627688;
+  color: #60788e;
   line-height: 1.6;
+  position: relative;
+  z-index: 1;
 }
 
 .posts-add-button,
@@ -62,8 +95,22 @@
 .posts-pagination button,
 .post-card__toggle {
   padding: 0.85rem 1.15rem;
-  background: #1f3b57;
+  background: linear-gradient(135deg, #2d55da 0%, #1d7ad6 56%, #2cb89b 100%);
   color: #fff;
+  box-shadow: 0 14px 24px rgba(44, 86, 181, 0.2);
+  transition:
+    transform 150ms ease,
+    filter 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.posts-add-button:hover:not(:disabled),
+.posts-search button:hover:not(:disabled),
+.posts-create-form button:hover:not(:disabled),
+.posts-pagination button:hover:not(:disabled),
+.post-card__toggle:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: saturate(1.04);
 }
 
 .posts-search button {
@@ -77,6 +124,9 @@
   gap: 1rem;
   align-items: center;
   padding: 1rem 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 251, 255, 0.94) 100%);
+  animation: posts-surface-in 420ms ease both;
 }
 
 .posts-search {
@@ -94,10 +144,10 @@
   width: 100%;
   min-height: 48px;
   padding: 0.8rem 1rem;
-  border: 1px solid #d7e1ea;
+  border: 1px solid rgba(180, 205, 229, 0.8);
   border-radius: 16px;
-  background: #fbfdff;
-  color: #193247;
+  background: rgba(255, 255, 255, 0.92);
+  color: #173857;
 }
 
 .posts-create-form textarea,
@@ -111,21 +161,24 @@
 }
 
 .posts-search button.secondary {
-  background: #e8eef4;
-  color: #23425f;
+  background: linear-gradient(180deg, #f3f8fe 0%, #e8f0fa 100%);
+  color: #295176;
+  box-shadow: none;
+  border: 1px solid rgba(183, 205, 228, 0.7);
 }
 
 .posts-per-page {
   display: grid;
   gap: 0.45rem;
   min-width: 120px;
-  color: #4c6277;
+  color: #4f687f;
   font-weight: 600;
 }
 
 .posts-create-panel {
   padding: 1.4rem;
   position: relative;
+  animation: posts-surface-in 520ms ease both;
 }
 
 .posts-toolbar,
@@ -146,7 +199,7 @@
 
 .posts-create-panel__header p {
   margin: 0.45rem 0 0;
-  color: #6b7f90;
+  color: #647d93;
 }
 
 .posts-create-form {
@@ -159,7 +212,7 @@
 .posts-create-form label {
   display: grid;
   gap: 0.45rem;
-  color: #4c6277;
+  color: #4f677e;
   font-weight: 600;
 }
 
@@ -176,7 +229,7 @@
   margin: 0;
   padding: 0.95rem 1rem;
   border-radius: 18px;
-  background: #fff1f0;
+  background: linear-gradient(180deg, #fff3f2 0%, #ffe9e8 100%);
   color: #be3d35;
   font-weight: 600;
 }
@@ -185,13 +238,14 @@
   margin: 0;
   padding: 0.95rem 1rem;
   border-radius: 18px;
-  background: #edf8f1;
+  background: linear-gradient(180deg, #edfdf4 0%, #e4f8ea 100%);
   color: #25734c;
   font-weight: 600;
 }
 
 .posts-list-shell {
   padding: 1.25rem;
+  animation: posts-surface-in 620ms ease both;
 }
 
 .posts-meta {
@@ -199,12 +253,17 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
-  color: #6b7f90;
+  color: #648097;
 }
 
 .post-card {
   padding: 1rem 0;
-  border-top: 1px solid #e7eef5;
+  border-top: 1px solid rgba(226, 236, 246, 0.94);
+  transition: transform 180ms ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
 }
 
 .post-card:first-of-type {
@@ -221,7 +280,7 @@
 
 .post-card__meta {
   margin: 0 0 0.35rem;
-  color: #6b7f90;
+  color: #678099;
   font-size: 0.9rem;
 }
 
@@ -229,7 +288,7 @@
 .comment-card__body,
 .posts-empty {
   margin: 0.8rem 0 0;
-  color: #566c7f;
+  color: #597287;
   line-height: 1.6;
 }
 
@@ -242,14 +301,22 @@
 .comment-card {
   padding: 1rem;
   border-radius: 18px;
-  background: linear-gradient(180deg, #ffffff 0%, #f6fafd 100%);
-  border: 1px solid #dfe8f1;
-  box-shadow: 0 10px 24px rgba(26, 47, 70, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 250, 253, 0.96) 100%);
+  border: 1px solid rgba(189, 209, 229, 0.72);
+  box-shadow: 0 12px 24px rgba(36, 73, 112, 0.06);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.comment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(36, 73, 112, 0.1);
 }
 
 .comment-card__author {
   margin: 0;
-  color: #193247;
+  color: #173857;
   font-weight: 700;
 }
 
@@ -259,8 +326,8 @@
   margin-top: 0.4rem;
   padding: 1rem;
   border-radius: 18px;
-  background: #fbfdff;
-  border: 1px solid #e4edf5;
+  background: linear-gradient(180deg, rgba(252, 254, 255, 0.98) 0%, rgba(244, 250, 255, 0.95) 100%);
+  border: 1px solid rgba(194, 212, 230, 0.72);
 }
 
 .comment-form button {
@@ -340,5 +407,17 @@ button:disabled {
   .posts-pagination button {
     width: 100%;
     padding-block: 0.7rem;
+  }
+}
+
+@keyframes posts-surface-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
