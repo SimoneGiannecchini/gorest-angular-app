@@ -40,6 +40,7 @@
   height: 220px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(69, 142, 255, 0.18) 0%, transparent 72%);
+  pointer-events: none;
 }
 
 .users-hero::after {
@@ -51,6 +52,13 @@
   height: 220px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 171, 135, 0.16) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.users-hero > div,
+.users-add-button {
+  position: relative;
+  z-index: 1;
 }
 
 .users-eyebrow {

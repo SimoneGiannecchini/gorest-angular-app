@@ -83,7 +83,8 @@
 .posts-search button,
 .posts-create-form button,
 .posts-pagination button,
-.post-card__toggle {
+.post-card__toggle,
+.comment-form button {
   border: 0;
   border-radius: 999px;
   font-weight: 700;
@@ -93,7 +94,8 @@
 .posts-search button,
 .posts-create-form button,
 .posts-pagination button,
-.post-card__toggle {
+.post-card__toggle,
+.comment-form button {
   padding: 0.85rem 1.15rem;
   background: linear-gradient(135deg, #2d55da 0%, #1d7ad6 56%, #2cb89b 100%);
   color: #fff;
@@ -108,7 +110,8 @@
 .posts-search button:hover:not(:disabled),
 .posts-create-form button:hover:not(:disabled),
 .posts-pagination button:hover:not(:disabled),
-.post-card__toggle:hover:not(:disabled) {
+.post-card__toggle:hover:not(:disabled),
+.comment-form button:hover:not(:disabled) {
   transform: translateY(-1px);
   filter: saturate(1.04);
 }
@@ -332,6 +335,7 @@
 
 .comment-form button {
   justify-self: start;
+  min-height: 46px;
 }
 
 .posts-pagination {
