@@ -60,7 +60,7 @@ Il token viene utilizzato per:
 
 ## 📥 Clonare il progetto
 
-```bash
+
 git clone https://github.com/simonegiannecchini/gorest-angular-app.git
 cd gorest-angular-app
 
@@ -68,6 +68,20 @@ cd gorest-angular-app
 ---
 
 # 📦 Installazione dipendenze
-```bash
+
 npm install
 ---
+ #▶️ Avvio progetto
+ ng serve
+ Apri il browser su:
+ http://localhost:4200
+ # 🧪 Test
+
+Esecuzione test unitari:
+npm test -- --watch=false
+Coverage:
+npx ng test --watch=false --coverage
+#🚀 Deploy su GitHub Pages
+
+Build produzione:
+npx ng build --configuration production --base-href /gorest-angular-app/
