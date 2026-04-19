@@ -71,7 +71,7 @@ cd gorest-angular-app
 
 npm install
 
- #▶️ Avvio progetto
+ ▶️ Avvio progetto
  ng serve
  Apri il browser su:
  http://localhost:4200
@@ -79,8 +79,10 @@ npm install
 
 Esecuzione test unitari:
 npm test -- --watch=false
+---
 Coverage:
 npx ng test --watch=false --coverage
+---
 #🚀 Deploy su GitHub Pages
 
 Build produzione:
