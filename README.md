@@ -57,7 +57,7 @@ npm install
 ng serve
 http://localhost:4200
 ```
-#🧪 Test
+## 🧪 Test
 Esecuzione test unitari
 ```bash
 npm test -- --watch=false
@@ -66,7 +66,7 @@ npm test -- --watch=false
 ```bash
 npx ng test --watch=false --coverage
 ```
-🚀 Deploy su GitHub Pages
+## 🚀 Deploy su GitHub Pages
 Build produzione:
 ```bash
 npx ng build --configuration production --base-href /gorest-angular-app/
