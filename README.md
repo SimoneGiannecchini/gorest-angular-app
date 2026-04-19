@@ -70,7 +70,7 @@ cd gorest-angular-app
 # 📦 Installazione dipendenze
 
 npm install
----
+
  #▶️ Avvio progetto
  ng serve
  Apri il browser su:
