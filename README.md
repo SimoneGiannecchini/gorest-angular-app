@@ -74,6 +74,8 @@ npx ng build --configuration production --base-href /gorest-angular-app/
 Applicazione online
 
 👉 https://simonegiannecchini.github.io/gorest-angular-app/
+---
+
 ⚠️ Note
 
 Le API GoREST possono avere comportamenti instabili su alcuni endpoint.
