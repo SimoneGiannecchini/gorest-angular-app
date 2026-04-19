@@ -95,6 +95,6 @@ L'applicazione gestisce gli errori mostrando messaggi chiari all'utente.
 
 ---
 
-👨‍💻 Autore
+## 👨‍💻 Autore
 
 Simone Giannecchini
