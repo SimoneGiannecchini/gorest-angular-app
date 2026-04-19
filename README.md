@@ -63,10 +63,14 @@ Esecuzione test unitari
 npm test -- --watch=false
 ```
 #Coverage
+```bash
 npx ng test --watch=false --coverage
-#🚀 Deploy su GitHub Pages
+```
+🚀 Deploy su GitHub Pages
 Build produzione:
+```bash
 npx ng build --configuration production --base-href /gorest-angular-app/
+```
 Applicazione online
 
 👉 https://simonegiannecchini.github.io/gorest-angular-app/
