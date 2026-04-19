@@ -86,15 +86,28 @@ Sono inoltre presenti:
 - servizi dedicati per utenti, post e commenti
 - componenti condivisi
 
-## Avvio in locale
+# 🚀 Setup del Progetto
 
-`npm start`
+Segui questi passaggi per scaricare ed eseguire il progetto in locale.
 
-Applicazione disponibile su: `http://localhost:4200`
+---
 
-## Build di produzione
+## 📥 Scaricare il progetto
 
-`npx ng build --configuration production`
+### 🔽 Metodo 1 — Download ZIP (rapido)
+
+1. Vai su GitHub nella pagina del repository  
+2. Clicca su **"Code"**  
+3. Seleziona **"Download ZIP"**  
+4. Estrai il file sul tuo computer  
+
+---
+
+### 💻 Metodo 2 — Clonare con Git (consigliato)
+
+```bash
+git clone https://github.com/username/nome-repo.git
+cd nome-repo
 
 ## Test
 
