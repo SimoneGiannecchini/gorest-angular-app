@@ -83,11 +83,12 @@ npm test -- --watch=false
 Coverage:
 npx ng test --watch=false --coverage
 ---
-#🚀 Deploy su GitHub Pages
+🚀 Deploy su GitHub Pages
 
 Build produzione:
 npx ng build --configuration production --base-href /gorest-angular-app/
-⚠️ Note
+
+⚠️ Note:
 
 Le API GoREST possono avere comportamenti instabili su alcuni endpoint.
 L'applicazione gestisce gli errori mostrando messaggi chiari all'utente.
