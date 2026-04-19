@@ -53,31 +53,27 @@ Il token viene utilizzato per:
 ```bash
 git clone https://github.com/simonegiannecchini/gorest-angular-app.git
 cd gorest-angular-app
-📦 Installazione dipendenze
 npm install
-▶️ Avvio progetto
 ng serve
-
-Apri il browser su:
-
 http://localhost:4200
-🧪 Test
+```
+#🧪 Test
 Esecuzione test unitari
+```bash
 npm test -- --watch=false
-Coverage
+```
+#Coverage
 npx ng test --watch=false --coverage
-🚀 Deploy su GitHub Pages
-Build produzione
+#🚀 Deploy su GitHub Pages
+Build produzione:
 npx ng build --configuration production --base-href /gorest-angular-app/
 Applicazione online
 
 👉 https://simonegiannecchini.github.io/gorest-angular-app/
-
 ⚠️ Note
 
 Le API GoREST possono avere comportamenti instabili su alcuni endpoint.
 L'applicazione gestisce gli errori mostrando messaggi chiari all'utente.
-
-👨‍💻 Autore
+## 👨‍💻 Autore
 
 Simone Giannecchini
